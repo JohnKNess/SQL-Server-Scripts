@@ -20,9 +20,9 @@ SELECT dowt.session_id,
        des1.cpu_time,
        des1.memory_usage
 FROM   sys.dm_os_waiting_tasks          AS dowt
-       INNER JOIN sys.dm_exec_sessions  AS des1
+       LEFT JOIN sys.dm_exec_sessions  AS des1
             ON  des1.session_id = dowt.session_id
-       INNER JOIN sys.dm_exec_requests  AS der
+       LEFT JOIN sys.dm_exec_requests  AS der
             ON  des1.session_id = der.session_id
        OUTER APPLY sys.dm_exec_sql_text(der.sql_handle) dest
 OUTER APPLY sys.dm_exec_query_plan(der.plan_handle) deqp
