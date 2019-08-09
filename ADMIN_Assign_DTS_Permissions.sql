@@ -3,7 +3,7 @@
   Date........:	09.08.2019
   Version.....:	0.1
   Server......:	localhost (first created for)
-  Database....:	master
+  Database....:	msdb
   Owner.......:	-
   Table.......:	-
   Type........:	Script
