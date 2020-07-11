@@ -6,7 +6,7 @@
     /*
     -- ==================================================================
     -- Author......:    hot2use / JohnKNess
-    -- Date........:    04-Jan-2006
+    -- Date........:    11-Jul-2020
     -- Version.....:    1.3
     -- Server......:    [server name here]
     -- Database....:    msdb
