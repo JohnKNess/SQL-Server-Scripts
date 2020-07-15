@@ -7,6 +7,8 @@
 ![GitHub](https://img.shields.io/github/issues-pr-raw/JohnKNess/SQL-Server-Scripts)
 ![GitHub](https://img.shields.io/github/forks/JohnKNess/SQL-Server-Scripts)
 ![GitHub](https://img.shields.io/github/stars/JohnKNess/SQL-Server-Scripts)
+![GitHub](https://img.shields.io/github/watchers/JohnKNess/SQL-Server-Scripts)
+
 
 # Navigation
 
