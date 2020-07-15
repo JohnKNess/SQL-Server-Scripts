@@ -18,6 +18,7 @@
 - [Scripts](#scripts)
     - [ADMIN_1ST_Aid_1_Running_Tasks.sql](#admin_1st_aid_1_running_taskssql)
     - [ADMIN_2ND_AID_Check_Blocking_Quick.sql](#admin_2nd_aid_check_blocking_quicksql)
+    - [ADMIN_Assign_DTS_Permissions.sql](#admin_assign_dts_permissionssql)
 - [Stored Procedures](#stored-procedures)
     - [spdeletehistory.sql](#spedeletehistorysql)
 
@@ -40,7 +41,11 @@ Following is a list of scripts that may be of interest.
 
 ### [ADMIN_1ST_Aid_1_Running_Tasks.sql](ADMIN_1ST_Aid_1_Running_Tasks.sql)
 
+
+
 ### [ADMIN_2ND_AID_Check_Blocking_Quick.sql](ADMIN_2ND_AID_Check_Blocking_Quick.sql)
+
+### [ADMIN_Assign_DTS_Permissions.sql](ADMIN_Assign_DTS_Permissions.sql)
 
 
 ## Stored Procedures
