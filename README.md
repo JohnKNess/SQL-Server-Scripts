@@ -41,11 +41,17 @@ Following is a list of scripts that may be of interest.
 
 ### [ADMIN_1ST_Aid_1_Running_Tasks.sql](ADMIN_1ST_Aid_1_Running_Tasks.sql)
 
+The current script quickly checks the running tasks of a SQL Server instance. 
 
+I've got a really good script coming soon, which retrieves various information based on the `LEFT JOIN`s used in the `JOIN` conditions. 
 
 ### [ADMIN_2ND_AID_Check_Blocking_Quick.sql](ADMIN_2ND_AID_Check_Blocking_Quick.sql)
 
+This script quickly checks for blocks/blocking on a SQL Server instance.
+
 ### [ADMIN_Assign_DTS_Permissions.sql](ADMIN_Assign_DTS_Permissions.sql)
+
+This script is a summary of permissions that can be assigend to SQL Server Logins (Windows Authenticated / Native) to facilitate the use of SSIS/DTS packages in a SQL Server instance.
 
 
 ## Stored Procedures
@@ -53,6 +59,34 @@ Following is a list of scripts that may be of interest.
 Following is a list of stored procedures that may be of interest.
 
 ### [spedeletehistory.sql](spedeletehistory.sql)
+
+The stored procecdure I wrote here is a wrapper for the internal SQL Server stored procedure `sp_delete_backuphistory`. It uses some basic parameters to go back in time amd delete the backup history in lumps. 
+The pre-defined default is to go back 1080 days and delete the backup history in steps of 1 up until 180 days ago. 
+
+The **pre-defined default values** are specified in the code itself and are:
+
+    set @iDaysBackToStart_CONST = 1080
+    set @iDaysToKeep_CONST = 180
+    set @iDayStep_CONST = 1
+
+These pre-defined default values should be modified before you create the procedure in your environment to meet your requirements. I set them as fail-safes.
+
+The **basic run-time parameters** to be used are:
+
+    @iDaysBackToStart int = 0
+    @iDaysToKeep int = 0
+    @iDayStep int = 0
+    @iDebug int = 0 
+
+You could run the script with the follwoing values:
+
+    spdeletehistory @iDaysBackToStart=3000, @iDaysToKeep = 200, @iDayStep = 5
+
+If you specify **run-time values that are smaller** than the pre-defined defaults (set during stored procedure creation) then you **will receive an error message**.
+
+
+
+
 
 
 [*Back to top*](#header1)

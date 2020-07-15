@@ -24,8 +24,8 @@
     /*
     -- ==================================================================
     -- Author......:    hot2use / JohnKNess
-    -- Date........:    11-Jul-2020
-    -- Version.....:    1.3
+    -- Date........:    15-Jul-2020
+    -- Version.....:    1.4
     -- Server......:    [server name here]
     -- Database....:    msdb
     -- Name........:    spdeletehistory
@@ -38,9 +38,10 @@
     --                  04-Jul-2006    1.2    Modified Text Output for return value
     --                                        Added Constants for defaults
     --                  25-Jan-2017    1.3    Slight modifications regarding comments
+    --                  15-Jul-2020    1.4		Added license to header
     --
-    -- Editor......:    UltraEdit 11.10a (using Syntax Highlighting)
-    --                    Tabstop Values = 4                    
+    -- Editor......:    UEStudio 20 (using Syntax Highlighting)
+    --                  Tabstop Values = 4                    
     -- ==================================================================
     */
     
