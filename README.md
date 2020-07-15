@@ -1,9 +1,9 @@
 # Admin_Scripts
 
-[![licence badge]][licence]
-[![stars badge]][stars]
-[![forks badge]][forks]
-[![issues badge]][issues]
+[![licence badge]][licence]  
+[![stars badge]][stars]  
+[![forks badge]][forks]  
+[![issues badge]][issues]  
 
 The scripts in this repository should be left as is.
 
