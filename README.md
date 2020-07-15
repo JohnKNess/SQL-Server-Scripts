@@ -36,15 +36,16 @@ The purpose of this repository it to enalbe me to find the scripts/procedures/pr
 
 Following is a list of scripts that may be of interest.
 
-### ADMIN_1ST_Aid_1_Running_Tasks.sql
+### [ADMIN_1ST_Aid_1_Running_Tasks.sql](ADMIN_1ST_Aid_1_Running_Tasks.sql)
 
-### ADMIN_2ND_AID_Check_Blocking_Quick.sql
+### [ADMIN_2ND_AID_Check_Blocking_Quick.sql](ADMIN_2ND_AID_Check_Blocking_Quick.sql)
+
 
 ## Stored Procedures
 
 Following is a list of stored procedures that may be of interest.
 
-### spedeletehistory.sql
+### [spedeletehistory.sql](spedeletehistory.sql)
 
 
 [*Back to top*](#header1)
