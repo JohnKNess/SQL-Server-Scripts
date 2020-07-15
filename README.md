@@ -14,7 +14,7 @@ Some scripts are not my copyright. If the scripts are copyright of someone else,
 
 ## License
 
-[The SQL-Server-Scripts use the GNU General Public License v3.0.](LICENSE.md)
+[The SQL-Server-Scripts use the GNU General Public License v3.0.](LICENSE)
 
 [*Back to top*](#header1)
 
