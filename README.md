@@ -62,7 +62,7 @@ Backup script for multiple databases. Just when you need a simple script to dump
 
 Following is a list of stored procedures that may be of interest.
 
-### [spedeletehistory.sql](spedeletehistory.sql)
+### [spdeletehistory.sql](spdeletehistory.sql)
 
 The stored procecdure I wrote here is a wrapper for the internal SQL Server stored procedure `sp_delete_backuphistory`. It uses some basic parameters to go back in time amd delete the backup history in lumps. 
 The pre-defined default is to go back 1080 days and delete the backup history in steps of 1 up until 180 days ago. 
