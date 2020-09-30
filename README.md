@@ -21,7 +21,7 @@
     - [ADMIN_Assign_DTS_Permissions.sql](#admin_assign_dts_permissionssql)
     - [ADMIN_Backup_Script_Multi_Database.sql](#admin_backup_script_multi_databasesql)
 - [Stored Procedures](#stored-procedures)
-    - [spdeletehistory.sql](#spedeletehistorysql)
+    - [spdeletehistory.sql](#spdeletehistorysql)
 
 
 ## License
