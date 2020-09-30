@@ -4,7 +4,7 @@
         
         Backup script for multiple databases. Just when you need a simple script
         to dump one or more databases to a disk drive and don't want to install
-        any other great scripts.
+        any other of the great scripts out there.
         
         Copyright (C) 2020  hot2use / JohnKNess
 
