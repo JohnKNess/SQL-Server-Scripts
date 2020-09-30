@@ -45,7 +45,7 @@ Following is a list of scripts that may be of interest.
 
 The current script quickly checks the running tasks of a SQL Server instance. 
 
-### [ADMIN_1ST_Aid_1_Running_Tasks_Extended.sql](ADMIN_1ST_Aid_1_Running_Tasks_Extended.sql) **new**
+### [ADMIN_1ST_Aid_1_Running_Tasks_Extended.sql](ADMIN_1ST_Aid_1_Running_Tasks_Extended.sql)
 
 Display a list of running tasks in a given SQL Server instance. Comment out any of the various LEFT elements to reduce the amount of informaiton displayed.
 
@@ -57,7 +57,7 @@ This script quickly checks for blocks/blocking on a SQL Server instance.
 
 This script is a summary of permissions that can be assigend to SQL Server Logins (Windows Authenticated / Native) to facilitate the use of SSIS/DTS packages in a SQL Server instance.
 
-### [ADMIN_Backup_Script_Multi_Database.sql](ADMIN_Backup_Script_Multi_Database.sql) **new**
+### [ADMIN_Backup_Script_Multi_Database.sql](ADMIN_Backup_Script_Multi_Database.sql)
 
 Backup script for multiple databases. Just when you need a simple script to dump one or more databases to a disk drive and don't want to install any other of the great scripts out there.
 
