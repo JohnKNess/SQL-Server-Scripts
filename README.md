@@ -21,6 +21,7 @@
     - [ADMIN_2ND_AID_Check_Blocking_Quick.sql](#admin_2nd_aid_check_blocking_quicksql)
     - [ADMIN_Assign_DTS_Permissions.sql](#admin_assign_dts_permissionssql)
     - [ADMIN_Backup_Script_Multi_Database.sql](#admin_backup_script_multi_databasesql)
+    - [ADMIN_Retrieve_Statistics_Info_Outdated_and_Update.sql](#admin_retrieve_statistics_info_outdated_and_updatesql)
 - [Stored Procedures](#stored-procedures)
     - [spdeletehistory.sql](#spdeletehistorysql)
 
@@ -60,6 +61,10 @@ This script is a summary of permissions that can be assigend to SQL Server Login
 ### [ADMIN_Backup_Script_Multi_Database.sql](ADMIN_Backup_Script_Multi_Database.sql)
 
 Backup script for multiple databases. Just when you need a simple script to dump one or more databases to a disk drive and don't want to install any other of the great scripts out there.
+
+### [ADMIN_Retrieve_Statistics_Info_Outdated_and_Update.sql](ADMIN_Retrieve_Statistics_Info_Outdated_and_Update.sql)
+
+Small non-parameterized statement to retrieve statistics that have become outdated and may or may not be triggered by SQL Server's "auto update statistics" algorithm.
 
 ## Stored Procedures
 
