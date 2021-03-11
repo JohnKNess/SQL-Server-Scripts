@@ -56,7 +56,7 @@ SELECT      des1.session_id             AS Session_ID_S,
             sdb.name                    AS DatabaseName,
             ssp.name                    AS SQL_Login_Name,
             des1.nt_user_name           AS NT_User_Name,           
-            '--kill ' + cast(dec1.session_id AS nvarchar(20)) AS killcommand,
+            CASE  WHEN dowt.blocking_session_id  IS NOT NULL AND dowt.blocking_session_id != des1.session_id THEN '--kill ' + cast(dowt.blocking_session_id AS nvarchar(20)) ELSE ' ' END AS killcommand,
             dowt.wait_duration_ms       AS Wait_Duration_ms,
             dowt.wait_type              AS Wait_Type,
             dowt.blocking_session_id    AS Blocking_Session_ID,
@@ -65,7 +65,8 @@ SELECT      des1.session_id             AS Session_ID_S,
             dest.[text]                 AS SQL_Text,
             deqp.query_plan             AS Query_Plan,
             des1.cpu_time               AS CPU_Time,
-            des1.memory_usage           AS RAM_Usage
+            des1.memory_usage           AS RAM_Usage,
+            'EOR'                       AS EOR
 FROM        sys.dm_exec_sessions        AS des1
             LEFT 
             JOIN sys.dm_exec_connections    AS dec1    
