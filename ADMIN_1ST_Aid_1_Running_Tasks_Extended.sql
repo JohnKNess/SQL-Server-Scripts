@@ -61,6 +61,7 @@ SELECT      des1.session_id             AS Session_ID_S,
             dowt.wait_type              AS Wait_Type,
             dowt.blocking_session_id    AS Blocking_Session_ID,
             dowt.resource_description   AS Ressource_Description,
+            des1.host_name              AS HostName,
             des1.program_name           AS Program_Name,
             dest.[text]                 AS SQL_Text,
             deqp.query_plan             AS Query_Plan,
@@ -80,9 +81,21 @@ FROM        sys.dm_exec_sessions        AS des1
             LEFT -- comment out LEFT to ...... (I'm not telling)
             JOIN sys.server_principals      AS ssp  
                 ON  des1.login_name         = ssp.name
+            /* ==================== This is for SQL Server 2012 + =================== */
             LEFT 
             JOIN sys.databases              AS sdb
                 ON des1.database_id         = sdb.database_id
+             /* ==================== This is for SQL Server 2012 + ===================*/
+            
+            /* ==================== This is for SQL Server 2008 R2 ===================
+            LEFT
+            JOIN sys.sysprocesses as ss
+                ON ss.spid = des1.session_id
+            LEFT 
+            JOIN sys.databases as sdb
+                ON sdb.database_id = ss.dbid
+             ==================== This is for SQL Server 2008 R2 ===================*/
+             
             OUTER APPLY sys.dm_exec_sql_text(der.sql_handle)     AS dest -- Retrieve Actual SQL Text
             OUTER APPLY sys.dm_exec_query_plan(der.plan_handle)  AS deqp -- Retrieve Query Plan (XML)
 WHERE       1=1
