@@ -22,6 +22,7 @@
     - [ADMIN_Assign_DTS_Permissions.sql](#admin_assign_dts_permissionssql)
     - [ADMIN_Backup_Script_Multi_Database.sql](#admin_backup_script_multi_databasesql)
     - [ADMIN_Retrieve_Statistics_Info_Outdated_and_Update.sql](#admin_retrieve_statistics_info_outdated_and_updatesql)
+    - [ADMIN_Blocking_Locking_Hierarchical.sql](#admin_blocking_locking_hierarchicalsql)
 - [Stored Procedures](#stored-procedures)
     - [spdeletehistory.sql](#spdeletehistorysql)
 
@@ -65,6 +66,12 @@ Backup script for multiple databases. Just when you need a simple script to dump
 ### [ADMIN_Retrieve_Statistics_Info_Outdated_and_Update.sql](ADMIN_Retrieve_Statistics_Info_Outdated_and_Update.sql)
 
 Small non-parameterized statement to retrieve statistics that have become outdated and may or may not be triggered by SQL Server's "auto update statistics" algorithm.
+
+#### [ADMIN_Blocking_Locking_Hierarchical.sql](ADMIN_Blocking_Locking_Hierarchical.sql)
+
+A script that displays a list of blocked/locked SQL Server sessions.
+
+[*Back to top*](#header1)
 
 ## Stored Procedures
 
