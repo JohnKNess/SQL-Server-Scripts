@@ -49,8 +49,9 @@
 
 SET LANGUAGE 'us_english'
 GO
-USE MASTER
-GO -- Create a Temp Table with Base Data
+-- USE MASTER -- commanted out to allow for use on Azure SQL
+-- GO 
+-- Create a Temp Table with Base Data
 SELECT sdes.session_id AS SESSION_ID,					-- SESSION_ID
        sder.blocking_session_id AS BLOCKING_SESSION_ID,	-- BLOCKED_SESSION_ID
        sder.wait_resource AS WAIT_RESSOURCE,			-- WAIT_RESOURCE
