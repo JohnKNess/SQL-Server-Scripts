@@ -52,21 +52,21 @@ GO
 -- USE MASTER -- commanted out to allow for use on Azure SQL
 -- GO 
 -- Create a Temp Table with Base Data
-SELECT sdes.session_id AS SESSION_ID,					-- SESSION_ID
-       sder.blocking_session_id AS BLOCKING_SESSION_ID,	-- BLOCKED_SESSION_ID
-       sder.wait_resource AS WAIT_RESSOURCE,			-- WAIT_RESOURCE
-       dowt.wait_duration_ms AS WAIT_DURATION_MS,		-- WAIT_DURATION_MS
-       dowt.wait_type AS WAIT_TYPE,						-- WAIT_TYPE
-       dest.text AS SQL_TEXT,							-- SQL_TEXT
-       deqp.query_plan AS QUERY_PLAN					-- PLAN_CACHE
+SELECT sdes.session_id AS SESSION_ID,    		            -- SESSION_ID
+       sder.blocking_session_id AS BLOCKING_SESSION_ID,	    -- BLOCKED_SESSION_ID
+       sder.wait_resource AS WAIT_RESSOURCE,                -- WAIT_RESOURCE
+       dowt.wait_duration_ms AS WAIT_DURATION_MS,		    -- WAIT_DURATION_MS
+       dowt.wait_type AS WAIT_TYPE,                         -- WAIT_TYPE
+       dest.text AS SQL_TEXT,        	                    -- SQL_TEXT
+       deqp.query_plan AS QUERY_PLAN    		            -- PLAN_CACHE
 INTO   #SESSION_BASE_DATA
-FROM   sys.dm_exec_sessions									AS sdes
-       JOIN sys.dm_exec_connections							AS sdec
+FROM   sys.dm_exec_sessions            AS sdes
+       JOIN sys.dm_exec_connections        	AS sdec
             ON  sdes.session_id = sdec.session_id
-       LEFT JOIN sys.dm_exec_requests						AS sder
+       LEFT JOIN sys.dm_exec_requests        AS sder
             ON  sder.session_id = sdec.session_id
             AND sder.connection_id = sdec.connection_id
-       LEFT JOIN sys.dm_os_waiting_tasks					AS dowt
+       LEFT JOIN sys.dm_os_waiting_tasks    		AS dowt
             ON  sdes.session_id = dowt.session_id
        OUTER APPLY sys.dm_exec_sql_text(sder.sql_handle)	AS dest
 	   OUTER APPLY sys.dm_exec_query_plan(sder.plan_handle)	AS deqp
@@ -90,39 +90,39 @@ WITH DirectSessions(
      AS (
          -- Base Elements(s) of CTE
          SELECT CONVERT(NCHAR(50), '| ' + CAST(SESSION_ID AS NCHAR(4)) + '') 
-                ,           												-- HIERARCHY (Base Tree Design Element)
-                SESSION_ID,													-- SESSION_ID
-                BLOCKING_SESSION_ID,										-- BLOCKED_SESSION_ID
-                WAIT_RESSOURCE,												-- WAIT_RESOURCE
-                WAIT_DURATION_MS,											-- WAIT_DURATION_MS
-                WAIT_TYPE,													-- WAIT_TYPE
-                1,                  										-- BLOCKING_LEVEL
-                SQL_TEXT,													-- SQL_TEXT
-                QUERY_PLAN,													-- PLAN_CACHE
-                CAST(SESSION_ID AS NVARCHAR(200))							-- SORTPATH
+                ,                                           -- HIERARCHY (Base Tree Design Element)
+                SESSION_ID,                	                -- SESSION_ID
+                BLOCKING_SESSION_ID,            	        -- BLOCKED_SESSION_ID
+                WAIT_RESSOURCE,                             -- WAIT_RESOURCE
+                WAIT_DURATION_MS,            		        -- WAIT_DURATION_MS
+                WAIT_TYPE,                	                -- WAIT_TYPE
+                1,                              	        -- BLOCKING_LEVEL
+                SQL_TEXT,                	                -- SQL_TEXT
+                QUERY_PLAN,                	                -- PLAN_CACHE
+                CAST(SESSION_ID AS NVARCHAR(200))        	-- SORTPATH
          FROM   #SESSION_BASE_DATA
          WHERE  1 = 1
                 AND (
                 		BLOCKING_SESSION_ID = 0 
                 		OR BLOCKING_SESSION_ID IS NULL
-                    )														-- Base element(s) with a blocking process id = 0 or NULL
+                    )                		-- Base element(s) with a blocking process id = 0 or NULL
          UNION ALL
          -- Next Element(s) of CTE
          SELECT CONVERT(
                     NCHAR(50),
                     REPLICATE('|     ', BLOCKING_LEVEL -1) + '|----¬ ' + CAST(sbd.SESSION_ID AS NCHAR(4))
-                ),	            											-- HIERARCHY (Extended Tree Design Elements)
-                sbd.SESSION_ID,												-- SESSION_ID
-                sbd.BLOCKING_SESSION_ID,									-- BLOCKED_SESSION_ID
-                sbd.WAIT_RESSOURCE,											-- WAIT_RESOURCE
-                sbd.WAIT_DURATION_MS,										-- WAIT_DURATION_MS
-                sbd.WAIT_TYPE,												-- WAIT_TYPE
-                BLOCKING_LEVEL + 1,											-- BLOCKING_LEVEL + 1 
-                sbd.SQL_TEXT,												-- SQL_TEXT
-                sbd.QUERY_PLAN,												-- PLAN_CACHE
+                ),	                        		        -- HIERARCHY (Extended Tree Design Elements)
+                sbd.SESSION_ID,                             -- SESSION_ID
+                sbd.BLOCKING_SESSION_ID,                    -- BLOCKED_SESSION_ID
+                sbd.WAIT_RESSOURCE,            		        -- WAIT_RESOURCE
+                sbd.WAIT_DURATION_MS,            	        -- WAIT_DURATION_MS
+                sbd.WAIT_TYPE,                              -- WAIT_TYPE
+                BLOCKING_LEVEL + 1,            		        -- BLOCKING_LEVEL + 1 
+                sbd.SQL_TEXT,                               -- SQL_TEXT
+                sbd.QUERY_PLAN,                             -- PLAN_CACHE
                 CAST(
                     CAST(ds.SORTPATH AS NVARCHAR(200)) + ' ' + CAST(sbd.SESSION_ID AS NVARCHAR(4)) AS NVARCHAR(200)
-                )															-- SORTPATH = base SESSION_ID + CURRENT SESSION_ID from iteration in CTE
+                )                                           -- SORTPATH = base SESSION_ID + CURRENT SESSION_ID from iteration in CTE
          FROM   #SESSION_BASE_DATA AS sbd
                 JOIN DirectSessions AS ds
                      ON  ds.SESSION_ID = sbd.BLOCKING_SESSION_ID
