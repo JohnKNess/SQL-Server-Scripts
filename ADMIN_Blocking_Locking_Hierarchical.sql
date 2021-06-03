@@ -90,13 +90,13 @@ WITH DirectSessions(
      AS (
          -- Base Elements(s) of CTE
          SELECT CONVERT(NCHAR(50), '| ' + CAST(SESSION_ID AS NCHAR(4)) + '') 
-                AS HIERARCHY,												-- HIERARCHY (Base Tree Design Element)
+                ,           												-- HIERARCHY (Base Tree Design Element)
                 SESSION_ID,													-- SESSION_ID
                 BLOCKING_SESSION_ID,										-- BLOCKED_SESSION_ID
                 WAIT_RESSOURCE,												-- WAIT_RESOURCE
                 WAIT_DURATION_MS,											-- WAIT_DURATION_MS
                 WAIT_TYPE,													-- WAIT_TYPE
-                1 AS BLOCKING_LEVEL,										-- BLOCKING_LEVEL
+                1,                  										-- BLOCKING_LEVEL
                 SQL_TEXT,													-- SQL_TEXT
                 QUERY_PLAN,													-- PLAN_CACHE
                 CAST(SESSION_ID AS NVARCHAR(200))							-- SORTPATH
@@ -111,7 +111,7 @@ WITH DirectSessions(
          SELECT CONVERT(
                     NCHAR(50),
                     REPLICATE('|     ', BLOCKING_LEVEL -1) + '|----¬ ' + CAST(sbd.SESSION_ID AS NCHAR(4))
-                ) AS HIERARCHY,												-- HIERARCHY (Extended Tree Design Elements)
+                ),	            											-- HIERARCHY (Extended Tree Design Elements)
                 sbd.SESSION_ID,												-- SESSION_ID
                 sbd.BLOCKING_SESSION_ID,									-- BLOCKED_SESSION_ID
                 sbd.WAIT_RESSOURCE,											-- WAIT_RESOURCE
