@@ -47,7 +47,7 @@
 -- ============================================================================= 
 */
 
-SET LANGUAGE 'us_english'
+SET LANGUAGE 'us_english';
 GO
 -- USE MASTER -- commanted out to allow for use on Azure SQL
 -- GO 
@@ -69,7 +69,7 @@ FROM   sys.dm_exec_sessions                                 AS sdes
        LEFT JOIN sys.dm_os_waiting_tasks                    AS dowt
             ON  sdes.session_id = dowt.session_id
        OUTER APPLY sys.dm_exec_sql_text(sder.sql_handle)    AS dest
-       OUTER APPLY sys.dm_exec_query_plan(sder.plan_handle) AS deqp
+       OUTER APPLY sys.dm_exec_query_plan(sder.plan_handle) AS deqp;
 GO
 /*
 SELECT * FROM #SESSION_BASE_DATA
@@ -89,7 +89,7 @@ WITH DirectSessions(
      )
      AS (
          -- Base Elements(s) of CTE
-         SELECT CONVERT(NCHAR(50), '| ' + CAST(SESSION_ID AS NCHAR(4)) + '') 
+         SELECT CONVERT(nchar(50), N'| ' + CAST(SESSION_ID AS nchar(4)) + N'') 
                 AS HIERARCHY,                               -- HIERARCHY (Base Tree Design Element)
                 SESSION_ID,                                 -- SESSION_ID
                 BLOCKING_SESSION_ID,                        -- BLOCKED_SESSION_ID
@@ -99,18 +99,18 @@ WITH DirectSessions(
                 1 AS BLOCKING_LEVEL,                        -- BLOCKING_LEVEL
                 SQL_TEXT,                                   -- SQL_TEXT
                 QUERY_PLAN,                                 -- PLAN_CACHE
-                CAST(SESSION_ID AS NVARCHAR(200))           -- SORTPATH
+                CAST(SESSION_ID AS nvarchar(200))           -- SORTPATH
          FROM   #SESSION_BASE_DATA
          WHERE  1 = 1
                 AND (
                         BLOCKING_SESSION_ID = 0 
                         OR BLOCKING_SESSION_ID IS NULL
-                    )                                       -- Base element(s) with a blocking process id = 0 or NULL
+                    )                                           -- Base element(s) with a blocking process id = 0 or NULL
          UNION ALL
          -- Next Element(s) of CTE
          SELECT CONVERT(
-                    NCHAR(50),
-                    REPLICATE('|     ', BLOCKING_LEVEL -1) + '|----¬ ' + CAST(sbd.SESSION_ID AS NCHAR(4))
+                    nchar(50),
+                    REPLICATE(N'|     ', BLOCKING_LEVEL - 1) + N'|----¬ ' + CAST(sbd.SESSION_ID AS nchar(4))
                 ) AS HIERARCHY,                             -- HIERARCHY (Extended Tree Design Elements)
                 sbd.SESSION_ID,                             -- SESSION_ID
                 sbd.BLOCKING_SESSION_ID,                    -- BLOCKED_SESSION_ID
@@ -121,7 +121,7 @@ WITH DirectSessions(
                 sbd.SQL_TEXT,                               -- SQL_TEXT
                 sbd.QUERY_PLAN,                             -- PLAN_CACHE
                 CAST(
-                    CAST(ds.SORTPATH AS NVARCHAR(200)) + ' ' + CAST(sbd.SESSION_ID AS NVARCHAR(4)) AS NVARCHAR(200)
+                    CAST(ds.SORTPATH AS NVARCHAR(200)) + N' ' + CAST(sbd.SESSION_ID AS nvarchar(4)) AS nvarchar(200)
                 )                                           -- SORTPATH = base SESSION_ID + CURRENT SESSION_ID from iteration in CTE
          FROM   #SESSION_BASE_DATA AS sbd
                 JOIN DirectSessions AS ds
@@ -144,7 +144,7 @@ SELECT HIERARCHY,
        QUERY_PLAN
 FROM   DirectSessions
 ORDER BY
-       SORTPATH
+       SORTPATH;
 GO
-DROP TABLE #SESSION_BASE_DATA
+DROP TABLE #SESSION_BASE_DATA;
 GO
