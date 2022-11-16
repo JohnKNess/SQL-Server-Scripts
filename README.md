@@ -42,7 +42,7 @@ Some scripts are not my copyright or copyleft. If the scripts are the intellectu
 Certain code elements and/or whole scripts have been contributed by others. Following is a list of contributors to this repository:
 
 - John Ness (Owner)
-- Hannah Vernon (Contributor) [1](https://github.com/HannahVernon) [2](http://www.sqlserverscience.com?utm_medium=referral&utm_source=github.profile)
+- Hannah Vernon (Contributor) [1](https://github.com/HannahVernon) [2](http://www.sqlserverscience.com)
 
 
 ## Purpose
@@ -120,6 +120,8 @@ If you specify **run-time values that are smaller** than the pre-defined default
 
 [*Back to top*](#header1)
 
+## History 
 
-2020-12-21 Switched master branch to main
-2020-12-23 Simple change to allow commit
+- 2020-12-21 Switched master branch to main 
+- 2020-12-23 Simple change to allow commit  
+- 2022-11-16 Added Contributors section
