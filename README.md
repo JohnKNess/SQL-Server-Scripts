@@ -49,7 +49,7 @@ The current script quickly checks the running tasks of a SQL Server instance.
 
 ### [ADMIN_1ST_Aid_1_Running_Tasks_Extended.sql](ADMIN_1ST_Aid_1_Running_Tasks_Extended.sql)
 
-Display a list of running tasks in a given SQL Server instance. Comment out any of the various LEFT elements to reduce the amount of informaiton displayed.
+Display a list of running tasks in a given SQL Server instance. Comment out any of the various LEFT elements to reduce the amount of information displayed.
 
 ### [ADMIN_2ND_AID_Check_Blocking_Quick.sql](ADMIN_2ND_AID_Check_Blocking_Quick.sql)
 
