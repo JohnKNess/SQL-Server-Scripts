@@ -14,6 +14,7 @@
 
 - [License](#license)
 - [Others License](#others-license)
+- [Contributions](#contributions)
 - [Purpose](#purpose)
 - [Scripts](#scripts)
     - [ADMIN_1ST_Aid_1_Running_Tasks.sql](#admin_1st_aid_1_running_taskssql)
@@ -27,13 +28,22 @@
     - [spdeletehistory.sql](#spdeletehistorysql)
 
 
+
 ## License
 
-[The SQL-Server-Scripts use the GNU General Public License v3.0.](LICENSE)
+[The SQL-Server-Scripts use the GNU General Public License v3.0.](LICENSE) except for ...
 
 ## Others License
 
 Some scripts are not my copyright or copyleft. If the scripts are the intellectual property of someone else, then the copyright/license is duely noted in the script/file/program.
+
+## Contributions
+
+Certain code elements and/or whole scripts have been contributed by others. Following is a list of contributors to this repository:
+
+- John Ness (Owner)
+- Hannah Vernon (Contributor) [1](https://github.com/HannahVernon) [2](http://www.sqlserverscience.com)
+
 
 ## Purpose
 
@@ -110,6 +120,8 @@ If you specify **run-time values that are smaller** than the pre-defined default
 
 [*Back to top*](#header1)
 
+## History 
 
-2020-12-21 Switched master branch to main
-2020-12-23 Simple change to allow commit
+- 2020-12-21 Switched master branch to main 
+- 2020-12-23 Simple change to allow commit  
+- 2022-11-16 Added Contributors section
