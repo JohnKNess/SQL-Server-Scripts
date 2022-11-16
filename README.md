@@ -37,7 +37,7 @@ Some scripts are not my copyright or copyleft. If the scripts are the intellectu
 
 ## Purpose
 
-The purpose of this repository it to enalbe me to find the scripts/procedures/programs I use most over and over again. I would also like to make these various scripts available to the community. 
+The purpose of this repository it to enable me to find the scripts/procedures/programs I use most over and over again. I would also like to make these various scripts available to the community. 
 
 ## Scripts
 
