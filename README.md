@@ -47,7 +47,7 @@ Certain code elements and/or whole scripts have been contributed by others. Foll
 
 ## Purpose
 
-The purpose of this repository it to enalbe me to find the scripts/procedures/programs I use most over and over again. I would also like to make these various scripts available to the community. 
+The purpose of this repository it to enable me to find the scripts/procedures/programs I use most over and over again. I would also like to make these various scripts available to the community. 
 
 ## Scripts
 
@@ -77,7 +77,7 @@ Backup script for multiple databases. Just when you need a simple script to dump
 
 Small non-parameterized statement to retrieve statistics that have become outdated and may or may not be triggered by SQL Server's "auto update statistics" algorithm.
 
-#### [ADMIN_Blocking_Locking_Hierarchical.sql](ADMIN_Blocking_Locking_Hierarchical.sql)
+### [ADMIN_Blocking_Locking_Hierarchical.sql](ADMIN_Blocking_Locking_Hierarchical.sql)
 
 A script that displays a list of blocked/locked SQL Server sessions.
 
