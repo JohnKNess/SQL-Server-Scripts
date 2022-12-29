@@ -77,7 +77,7 @@ Backup script for multiple databases. Just when you need a simple script to dump
 
 Small non-parameterized statement to retrieve statistics that have become outdated and may or may not be triggered by SQL Server's "auto update statistics" algorithm.
 
-#### [ADMIN_Blocking_Locking_Hierarchical.sql](ADMIN_Blocking_Locking_Hierarchical.sql)
+### [ADMIN_Blocking_Locking_Hierarchical.sql](ADMIN_Blocking_Locking_Hierarchical.sql)
 
 A script that displays a list of blocked/locked SQL Server sessions.
 
