@@ -300,7 +300,7 @@ IF @iContinue = 1
                 N'.bak'' 
                 WITH ' + @nvCopyOnly + '' + @nvCompression + 'RETAINDAYS = 3, NOFORMAT, NOINIT, NAME = N''' +
                 @nvDB2Backup +
-                N'-Full Backup Sichern'', SKIP, NOREWIND, 
+                N'-Full Backup'', SKIP, NOREWIND, 
                      NOUNLOAD, STATS = ' + @nvIncrement + N', CHECKSUM'
             
             PRINT @nvSQLStatement
@@ -359,7 +359,7 @@ IF @iContinue = 1
                         @nvDB2Backup + N'_TLog_' + @nvCopyOnlyTxt + @nvBackupDate + N'_' + @nvBackupTime +
                         N'.trn'' 
             WITH ' + @nvCopyOnly + '' + @nvCompression + 'RETAINDAYS = 3, NOFORMAT, NOINIT, NAME = N''' + @nvDB2Backup +
-                        N'-Transaktion Log Sichern'', SKIP, NOREWIND, 
+                        N'-Transaktion Log Backup'', SKIP, NOREWIND, 
                NOUNLOAD, STATS = ' + @nvIncrement + N', CHECKSUM'
                     
                     PRINT @nvSQLStatement
