@@ -24,6 +24,7 @@
     - [ADMIN_Backup_Script_Multi_Database.sql](#admin_backup_script_multi_databasesql)
     - [ADMIN_Retrieve_Statistics_Info_Outdated_and_Update.sql](#admin_retrieve_statistics_info_outdated_and_updatesql)
     - [ADMIN_Blocking_Locking_Hierarchical.sql](#admin_blocking_locking_hierarchicalsql)
+	- [ADMIN_Set_Database_Recovery_Model_on_All_Databases.sql](#admin_set_database_recovery_model_on_all_databases)
 - [Stored Procedures](#stored-procedures)
     - [spdeletehistory.sql](#spdeletehistorysql)
 
@@ -80,6 +81,14 @@ Small non-parameterized statement to retrieve statistics that have become outdat
 ### [ADMIN_Blocking_Locking_Hierarchical.sql](ADMIN_Blocking_Locking_Hierarchical.sql)
 
 A script that displays a list of blocked/locked SQL Server sessions.
+
+### [ADMIN_Set_Database_Recovery_Model_on_All_Databases.sql]([ADMIN_Set_Database_Recovery_Model_on_All_Databases.sql])
+
+A script that will set the database recovery model of every user database based on the recovery model of the model database. If the parameter for @nvRecMod is set then the script will change the recovery model of the model database too. This script does not modify the recovery model of the following databases: 
+- master
+- msdb
+- tempdb
+- LOWER(%tempdb%)
 
 [*Back to top*](#header1)
 
