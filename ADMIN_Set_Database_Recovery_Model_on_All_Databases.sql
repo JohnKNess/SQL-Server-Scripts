@@ -1,11 +1,11 @@
 /*
 -- =============================================================================
         ADMIN_Set_Database_Recovery_Model_TEST_Server.sql - 
-			This script modifies the Recovery Model of all user databases 
-			based on the parameter @nvRecMod (we will modify model)
-			or based on the setting of the model database.
-			   
-			We don't touch master, msdb, tempdb or %tempdb%	        
+            This script modifies the Recovery Model of all user databases 
+            based on the parameter @nvRecMod (we will modify model)
+            or based on the setting of the model database.
+               
+            We don't touch master, msdb, tempdb or %tempdb%            
         Copyright (C) 2024  hot2use / JohnKNess
 
     This program is free software: you can redistribute it and/or modify
@@ -35,12 +35,12 @@
    Name........:  ADMIN_Set_Database_Recovery_Model_TEST_Server.sql 
    Description.:  This script modifies the Recovery Model of all user databases 
    ............   based on the parameter @nvRecMod (we will modify model)
-   ............	  or based on the setting of the model database.
+   ............      or based on the setting of the model database.
    ............   
-   ............   We don't touch master, msdb, tempdb or %tempdb%		
-   ............		
+   ............   We don't touch master, msdb, tempdb or %tempdb%        
+   ............        
    History.....:  18-Jun-2024    0.1    JN  First created
-   ............   19-Jun-2024	 0.2	JN	Added GNU License and header
+   ............   19-Jun-2024     0.2    JN    Added GNU License and header
    ............ 
    Editors.....:  SQLAssistant (SoftTree Technologies, Inc.)
    ............   SSMS 19.3
@@ -50,13 +50,13 @@
 
 /***************************************************************************************************
  * @nvRecMod     :  The recovery model you want to set for all database
- *                  NULL | '' 	= use Recovery Model set on model database
+ *                  NULL | ''   = use Recovery Model set on model database      (DEFAULT)
  *                  SIMPLE		= set SIMPLE Recovery Model			(includes model database)
  *                  FULL		= set FULL Recovery Model			(includes model database)
  *                  BULK_LOGGED = set BULK-LOGGED Recovery Model	(includes model database)
  *                  
- * @NoExec       :  0 = execute backup                                          (DEFAULT)
- * (0|1)            1 = do NOT execute backup, only displays commands
+ * @NoExec       :  0 = change recovery model            						(DEFAULT)
+ * (0|1)            1 = do NOT change recovery model, only displays commands
  *
  * @iDebug       :  0 = do NOT debug anything                                   (DEFAULT)
  * (BITWISE)        1 = debug basic features / display position markers
@@ -66,7 +66,7 @@
  ***************************************************************************************************/
 DECLARE @iDebug			AS INT;
 DECLARE @nvRecMod		AS NVARCHAR(20) = N''; -- NULL, SIMPLE, FULL, BULK_LOGGED; 
-DECLARE @NoExec			AS BIT			= 1;
+DECLARE @NoExec			AS BIT			= 0;
 
 DECLARE @dtStarted AS DATETIME = GETDATE();
 DECLARE @tblDatabase AS TABLE (dbid INT IDENTITY(1,1), nvDBName NVARCHAR(150), nvRecMod NVARCHAR(20), nvRecModModel NVARCHAR(20), dtStarted DATETIME, dtLogged DATETIME DEFAULT GETDATE());
