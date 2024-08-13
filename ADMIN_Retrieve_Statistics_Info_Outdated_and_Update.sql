@@ -75,16 +75,16 @@ FROM   [sys].[stats] [ss]
        OUTER APPLY [sys].[dm_db_stats_properties]([so].[object_id], [ss].[stats_id]) sp
 WHERE  1 = 1
        AND [so].[type] = 'U'
-           -- AND [sp].[modification_counter] > 0
-           -- AND 100/(1.0*[sp].[rows])*[sp].[modification_counter] < 10.0     -- maximum percentage change (certain tables have a high volatility)
-           -- AND 100/(1.0*[sp].[rows])*[sp].[modification_counter] > 0.001    -- minimum percentage change (we aren't going to be looking at statistics with a very low percentage of change)
-           -- AND [sp].[rows] > 1000000                                        -- only look at statistics which contain more than 1'000'000 rows.
-           -- AND [sp].[last_updated] < dateadd(hh,-1,getdate())               -- only look at statistics which have been updated more than an hour ago
-       AND [sch].[name] = 'dbo'
-       AND [so].[name] = 'RCH_DM_PRINTHISTORY'
-       -- AND [ss].[name] NOT LIKE '_WA_Sys%'                                  -- Exclude automatically create statistics
-	   -- AND [ss].[name] not like '_dta_stat%'                                -- Exclude statistics crete by the Database Tuning Advisor
-	   -- AND (SQRT(1000 * [sp].[rows]) < [sp].[modification_counter] OR [sp].[rows] * 1.0 / 100 * 20 + 500 < [sp].[modification_counter])
+       AND [sp].[modification_counter] > 0
+       AND 100/(1.0*[sp].[rows])*[sp].[modification_counter] < 10.0     -- maximum percentage change (certain tables have a high volatility)
+       AND 100/(1.0*[sp].[rows])*[sp].[modification_counter] > 0.001    -- minimum percentage change (we aren't going to be looking at statistics with a very low percentage of change)
+       AND [sp].[rows] > 1000000                                        -- only look at statistics which contain more than 1'000'000 rows.
+       AND [sp].[last_updated] < dateadd(hh,-1,getdate())               -- only look at statistics which have been updated more than 1 hour ago
+       -- AND [sch].[name] = 'dbo'                                         -- specific schema
+       -- AND [so].[name] = 'RCH_DM_PRINTHISTORY'                          -- specific table
+       AND [ss].[name] NOT LIKE '_WA_Sys%'                              -- Exclude automatically create statistics
+       AND [ss].[name] not like '_dta_index%'                           -- Exclude statistics crete by the Database Tuning Advisor
+	AND (SQRT(1000 * [sp].[rows]) < [sp].[modification_counter] OR [sp].[rows] * 1.0 / 100 * 20 + 500 < [sp].[modification_counter]) -- only statistics that have passed the trigger value
 ORDER BY
        [sch].[name] + '.' + [so].[name] ASC,
        [ss].[name] ASC,
