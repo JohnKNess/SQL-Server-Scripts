@@ -48,7 +48,7 @@
 ================================================================================================= */
  
 SELECT 'DBCC SHOW_STATISTICS ([' + [sch].[NAME] + '.' +[so].[NAME] + '] , [' + [ss].[NAME] + ']) WITH STAT_HEADER'       AS [SHOW_STATISTICS],
-	   'update statistics ' + [sch].[name] + '.' + [so].[name] + ' ' + [ss].[name] + ' WITH FULLSCAN'                    AS [UPDATE_STATISTICS] -- PAGECOUNT=100, ROWCOUNT=100 | FULLSCAN
+	   'update statistics ' + [sch].[name] + '.' + [so].[name] + ' ' + [ss].[name] + ' WITH FULLSCAN'                    AS [UPDATE_STATISTICS], -- PAGECOUNT=100, ROWCOUNT=100 | FULLSCAN
 	   'DBCC UPDATEUSAGE(' + DB_NAME() + ', ''' + [sch].[NAME] + '.' +[so].[NAME] + ''')'                                AS [UPDATE_USAGE],
        [sch].[name] + '.' + [so].[name]                        AS [TableName],
        [ss].[name]                                             AS [Statistic],
@@ -76,9 +76,9 @@ FROM   [sys].[stats] [ss]
 WHERE  1 = 1
        AND [so].[type] = 'U'
        AND [sp].[modification_counter] > 0
-       AND 100/(1.0*[sp].[rows])*[sp].[modification_counter] < 10.0     -- maximum percentage change (certain tables have a high volatility)
-       AND 100/(1.0*[sp].[rows])*[sp].[modification_counter] > 0.001    -- minimum percentage change (we aren't going to be looking at statistics with a very low percentage of change)
-       AND [sp].[rows] > 1000000                                        -- only look at statistics which contain more than 1'000'000 rows.
+       -- AND 100/(1.0*[sp].[rows])*[sp].[modification_counter] < 10.0     -- maximum percentage change (certain tables have a high volatility)
+       -- AND 100/(1.0*[sp].[rows])*[sp].[modification_counter] > 0.001    -- minimum percentage change (we aren't going to be looking at statistics with a very low percentage of change)
+       AND [sp].[rows] > 1000                                        -- only look at statistics which contain more than 1'000'000 rows.
        AND [sp].[last_updated] < dateadd(hh,-1,getdate())               -- only look at statistics which have been updated more than 1 hour ago
        -- AND [sch].[name] = 'dbo'                                         -- specific schema
        -- AND [so].[name] = 'RCH_DM_PRINTHISTORY'                          -- specific table
